@@ -1,0 +1,132 @@
+<!-- Import the component -->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+<style>
+      model-viewer {
+      width: 100%;
+      height: 720px;
+    }
+      .button {
+      background-color: #A8705F;
+	    opacity:1	
+      border: none;
+      color: white;
+      padding: 6px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 9px;
+      margin: 6px 0px;
+      cursor: pointer;
+      border-radius: 5px;
+      border: 0px solid rgba(9, 148, 28, 0.541);
+      box-shadow: 0 0px 0px 0 rgba(0,0,0,0.2), 0 0px 0px 0 rgba(0,0,0,0.19);
+      
+    }
+	
+    .button:hover{
+	  opacity:0.6;
+	}
+	
+    .wrap {
+    border: solid 1px #ccc;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  #output {
+    display: inline-block;
+    top: 4px;
+    position: relative;
+    border: dotted 1px #ccc;
+    padding: 2px;
+  }
+  
+  .button {
+    border: solid 0px #ccc;
+  }
+  p {
+    color: white;
+    padding: 5px;
+    display: in-block;
+    font-size: 12px;
+    margin: 10px 6px;
+    font-family: Arial;
+    }
+  div {
+    padding: 0px 150px;
+    margin: 10px 30px;
+    height: 60px;
+    width: 55%;
+    margin-left: 30px;
+  }
+</style>
+
+<model-viewer id="ninio" camera-controls src="https://cdn.glitch.com/5a1baa8c-41e0-4efb-802b-4cbdf9d65222%2FNinioo.glb?v=1629633393735" ar ar-modes="webxr scene-viewer quick-look" alt="Niño daños" exposure="0.45">
+  <div class="controls" style='position: fixed; top: 4px; width:100%;  text-align: right; z-index: 0;'>
+    <div>
+      <p>Cartografía daños</p>
+      <button class="button" id="erosion" value="https://cdn.glitch.com/5a1baa8c-41e0-4efb-802b-4cbdf9d65222%2Fdanios_azul.jpg?v=1629651389780">Erosión</button>
+      <button class="button" id="xilofagos" value="https://cdn.glitch.com/5a1baa8c-41e0-4efb-802b-4cbdf9d65222%2Fdanios_amarillo.jpg?v=1629651438098">xilófagos</button>
+      <button class="button" id="perdidas" value="https://cdn.glitch.com/5a1baa8c-41e0-4efb-802b-4cbdf9d65222%2Fdanios_verde.jpg?v=1629651498690">Pérdidas color</button>
+      <button class="button" id="ensambles" value="https://cdn.glitch.com/5a1baa8c-41e0-4efb-802b-4cbdf9d65222%2Fdanios_rojo.jpg?v=1629651616231">Ensambles</button>
+      <button class="button" id="reset" value="https://cdn.glitch.com/5a1baa8c-41e0-4efb-802b-4cbdf9d65222%2Ftextura_sin_danios.jpg?v=1629652084318">Reset</button>
+      
+    </div>
+    <div>
+      <p>Superposición de daños</p>
+      
+        <button class="button" id="erosiones" value="https://cdn.glitch.com/5a1baa8c-41e0-4efb-802b-4cbdf9d65222%2Fdanio_azul_con_textura.jpg?v=1629652136517">Erosión</button>
+        <button class="button" id="xilofag" value="https://cdn.glitch.com/5a1baa8c-41e0-4efb-802b-4cbdf9d65222%2Fdanio_amarillo_con_textura.jpg?v=1629654405618">xilófagos</button>
+        <button class="button" id="perdidascolor" value="https://cdn.glitch.com/5a1baa8c-41e0-4efb-802b-4cbdf9d65222%2Fdanio_verde_con_textura.jpg?v=1629654513178">Pérdidas color</button>
+        <button class="button" id="ensamble" value="https://cdn.glitch.com/5a1baa8c-41e0-4efb-802b-4cbdf9d65222%2Fdanio_rojo_con_textura.jpg?v=1629654656453">Ensambles</button>
+        <button class="button" id="Sin_daños" value="https://cdn.glitch.com/5a1baa8c-41e0-4efb-802b-4cbdf9d65222%2Ftextura_sin_danios.jpg?v=1629652084318">Reset</button>
+    </div>
+  </div>
+</model-viewer>
+<script type="module">
+const modelViewerTexture = document.querySelector("model-viewer#ninio");
+
+modelViewerTexture.addEventListener("load", (ev) => {
+
+  let material = modelViewerTexture.model.materials[0];
+
+  let applyPBRTexture = (channel, event) => {
+    material.pbrMetallicRoughness[channel].texture.source.setURI(event.target.value);
+  }
+
+  document.querySelector('#erosion').addEventListener('click', (event) => {
+    applyPBRTexture('baseColorTexture', event);
+  });
+  document.querySelector('#xilofagos').addEventListener('click', (event) => {
+    applyPBRTexture('baseColorTexture', event);
+  });
+  document.querySelector('#perdidas').addEventListener('click', (event) => {
+    applyPBRTexture('baseColorTexture', event);
+  });
+  document.querySelector('#ensambles').addEventListener('click', (event) => {
+    applyPBRTexture('baseColorTexture', event);
+  });
+   document.querySelector('#reset').addEventListener('click', (event) => {
+    applyPBRTexture('baseColorTexture', event);
+  });
+  
+  document.querySelector('#Sin_daños').addEventListener('click', (event) => {
+    applyPBRTexture('baseColorTexture', event);
+  });
+  document.querySelector('#erosiones').addEventListener('click', (event) => {
+    applyPBRTexture('baseColorTexture', event);
+  });
+   document.querySelector('#xilofag').addEventListener('click', (event) => {
+    applyPBRTexture('baseColorTexture', event);
+  });
+  document.querySelector('#perdidascolor').addEventListener('click', (event) => {
+    applyPBRTexture('baseColorTexture', event);
+  });
+  document.querySelector('#ensamble').addEventListener('click', (event) => {
+    applyPBRTexture('baseColorTexture', event);
+  });
+  
+})
+
+</script>
