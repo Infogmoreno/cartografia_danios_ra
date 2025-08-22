@@ -1,132 +1,217 @@
 <!-- Import the component -->
-<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<script
+  type="module"
+  src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+></script>
 
 <style>
-      model-viewer {
-      width: 100%;
-      height: 720px;
-    }
-      .button {
-      background-color: #A8705F;
-	    opacity:1	
-      border: none;
-      color: white;
-      padding: 6px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 9px;
-      margin: 6px 0px;
-      cursor: pointer;
-      border-radius: 5px;
-      border: 0px solid rgba(9, 148, 28, 0.541);
-      box-shadow: 0 0px 0px 0 rgba(0,0,0,0.2), 0 0px 0px 0 rgba(0,0,0,0.19);
-      
-    }
-	
-    .button:hover{
-	  opacity:0.6;
-	}
-	
-    .wrap {
-    border: solid 1px #ccc;
-    padding: 20px;
-    text-align: center;
+       model-viewer {
+       width: 100%;
+       height: 100%;
+     }
+       .button {
+       background-color: #B3725A;
+       opacity:1;
+       border: none;
+       color: white;
+       padding: 6px;
+       text-align: center;
+       text-decoration: none;
+       display: inline-block;
+       font-size: 9px;
+       margin: 6px 0px;
+       cursor: pointer;
+       border-radius: 5px;
+       border: 0px solid rgba(9, 148, 28, 0.541);
+       box-shadow: 0 0px 0px 0 rgba(0,0,0,0.2), 0 0px 0px 0 rgba(0,0,0,0.19);
+
+     }
+
+     .button:hover{
+    opacity:0.6;
   }
-  
-  #output {
-    display: inline-block;
-    top: 4px;
-    position: relative;
-    border: dotted 1px #ccc;
-    padding: 2px;
-  }
-  
-  .button {
-    border: solid 0px #ccc;
-  }
-  p {
-    color: white;
-    padding: 5px;
-    display: in-block;
-    font-size: 12px;
-    margin: 10px 6px;
-    font-family: Arial;
-    }
-  div {
-    padding: 0px 150px;
-    margin: 10px 30px;
-    height: 60px;
-    width: 55%;
-    margin-left: 30px;
-  }
+
+     .wrap {
+     border: solid 1px #ccc;
+     padding: 20px;
+     text-align: center;
+   }
+
+   #output {
+     display: inline-block;
+     top: 4px;
+     position: relative;
+     border: dotted 1px #ccc;
+     padding: 2px;
+   }
+
+   .button {
+     border: solid 0px #ccc;
+   }
+   p {
+     color: white;
+     padding: 5px;
+     display: in-block;
+     font-size: 12px;
+     margin: 10px 6px;
+     font-family: Arial;
+     }
+   div {
+     padding: 0px 150px;
+     margin: 10px 30px;
+     height: 60px;
+     width: 55%;
+     margin-left: 30px;
+   }
 </style>
 
-<model-viewer id="ninio" camera-controls src="assets/Ninioo.glb" ar ar-modes="webxr scene-viewer quick-look" alt="Niño daños" exposure="0.45">
-  <div class="controls" style='position: fixed; top: 4px; width:100%;  text-align: right; z-index: 0;'>
+<model-viewer
+  id="ninio"
+  camera-controls
+  src="assets/Ninioo.glb"
+  ar
+  ar-modes="webxr scene-viewer quick-look"
+  alt="Niño daños"
+  exposure="0.45"
+>
+  <div
+    class="controls"
+    style="
+      position: fixed;
+      bottom: 15%;
+      right: -38%;
+      width: 100%;
+      text-align: right;
+      z-index: 0;
+    "
+  >
     <div>
       <p>Cartografía daños</p>
-      <button class="button" id="erosion" value="assets/mapas/danios_azul.jpg">Erosión</button>
-      <button class="button" id="xilofagos" value="assets/mapas/danios_amarillo.jpg">xilófagos</button>
-      <button class="button" id="perdidas" value="assets/mapas/danios_verde.jpg">Pérdidas color</button>
-      <button class="button" id="ensambles" value="assets/mapas/danios_rojo.jpg">Ensambles</button>
-      <button class="button" id="reset" value="assets/mapas/textura_sin_danios.jpg">Reset</button>
-      
+      <button
+        class="button"
+        id="erosion"
+        value="assets/danios_azul.jpg"
+      >
+        Erosión
+      </button>
+      <button
+        class="button"
+        id="xilofagos"
+        value="assets/danios_amarillo.jpg"
+      >
+        xilófagos
+      </button>
+      <button
+        class="button"
+        id="perdidas"
+        value="assets/danios_verde.jpg"
+      >
+        Pérdidas color
+      </button>
+      <button
+        class="button"
+        id="ensambles"
+        value="assets/danios_rojo.jpg"
+      >
+        Ensambles
+      </button>
+      <button
+        class="button"
+        id="reset"
+        value="assets/textura_sin_danios.jpg"
+      >
+        Reset
+      </button>
     </div>
     <div>
       <p>Superposición de daños</p>
-      
-        <button class="button" id="erosiones" value="assets/mapas/danio_azul_con_textura.jpg">Erosión</button>
-        <button class="button" id="xilofag" value="assets/mapas/danio_amarillo_con_textura.jpg">xilófagos</button>
-        <button class="button" id="perdidascolor" value="assets/mapas/danio_verde_con_textura.jpg">Pérdidas color</button>
-        <button class="button" id="ensamble" value="assets/mapas/danio_rojo_con_textura.jpg">Ensambles</button>
-        <button class="button" id="Sin_daños" value="assets/mapas/textura_sin_danios.jpg">Reset</button>
+      <button
+        class="button"
+        id="erosiones"
+        value="assets/danio_azul_con_textura.jpg"
+      >
+        Erosión
+      </button>
+      <button
+        class="button"
+        id="xilofag"
+        value="assets/danio_amarillo_con_textura.jpg"
+      >
+        xilófagos
+      </button>
+      <button
+        class="button"
+        id="perdidascolor"
+        value="assets/danio_verde_con_textura.jpg"
+      >
+        Pérdidas color
+      </button>
+      <button
+        class="button"
+        id="ensamble"
+        value="assets/danio_rojo_con_textura.jpg"
+      >
+        Ensambles
+      </button>
+      <button
+        class="button"
+        id="Sin_daños"
+        value="assets/textura_sin_danios.jpg"
+      >
+        Reset
+      </button>
     </div>
   </div>
 </model-viewer>
 <script type="module">
-const modelViewerTexture = document.querySelector("model-viewer#ninio");
+  const modelViewerTexture = document.querySelector("model-viewer#ninio");
 
-modelViewerTexture.addEventListener("load", (ev) => {
+  modelViewerTexture.addEventListener("load", (ev) => {
+    const material = modelViewerTexture.model.materials[0];
 
-  let material = modelViewerTexture.model.materials[0];
+    const applyPBRTexture = async (channel, event) => {
+      const texture = await modelViewerTexture.createTexture(
+        event.target.value
+      );
+      if (channel.includes("base") || channel.includes("metallic")) {
+        material.pbrMetallicRoughness[channel].setTexture(texture);
+      } else {
+        material[channel].setTexture(texture);
+      }
+    };
 
-  let applyPBRTexture = (channel, event) => {
-    material.pbrMetallicRoughness[channel].texture.source.setURI(event.target.value);
-  }
+    document.querySelector("#erosion").addEventListener("click", (event) => {
+      applyPBRTexture("baseColorTexture", event);
+    });
+    document.querySelector("#xilofagos").addEventListener("click", (event) => {
+      applyPBRTexture("baseColorTexture", event);
+    });
+    document.querySelector("#perdidas").addEventListener("click", (event) => {
+      applyPBRTexture("baseColorTexture", event);
+    });
+    document.querySelector("#ensambles").addEventListener("click", (event) => {
+      applyPBRTexture("baseColorTexture", event);
+    });
+    document.querySelector("#reset").addEventListener("click", (event) => {
+      applyPBRTexture("baseColorTexture", event);
+    });
 
-  document.querySelector('#erosion').addEventListener('click', (event) => {
-    applyPBRTexture('baseColorTexture', event);
+    document.querySelector("#Sin_daños").addEventListener("click", (event) => {
+      applyPBRTexture("baseColorTexture", event);
+    });
+    document.querySelector("#erosiones").addEventListener("click", (event) => {
+      applyPBRTexture("baseColorTexture", event);
+    });
+    document.querySelector("#xilofag").addEventListener("click", (event) => {
+      applyPBRTexture("baseColorTexture", event);
+    });
+    document
+      .querySelector("#perdidascolor")
+      .addEventListener("click", (event) => {
+        applyPBRTexture("baseColorTexture", event);
+      });
+    document.querySelector("#ensamble").addEventListener("click", (event) => {
+      applyPBRTexture("baseColorTexture", event);
+    });
   });
-  document.querySelector('#xilofagos').addEventListener('click', (event) => {
-    applyPBRTexture('baseColorTexture', event);
-  });
-  document.querySelector('#perdidas').addEventListener('click', (event) => {
-    applyPBRTexture('baseColorTexture', event);
-  });
-  document.querySelector('#ensambles').addEventListener('click', (event) => {
-    applyPBRTexture('baseColorTexture', event);
-  });
-   document.querySelector('#reset').addEventListener('click', (event) => {
-    applyPBRTexture('baseColorTexture', event);
-  });
-  
-  document.querySelector('#Sin_daños').addEventListener('click', (event) => {
-    applyPBRTexture('baseColorTexture', event);
-  });
-  document.querySelector('#erosiones').addEventListener('click', (event) => {
-    applyPBRTexture('baseColorTexture', event);
-  });
-   document.querySelector('#xilofag').addEventListener('click', (event) => {
-    applyPBRTexture('baseColorTexture', event);
-  });
-  document.querySelector('#perdidascolor').addEventListener('click', (event) => {
-    applyPBRTexture('baseColorTexture', event);
-  });
-  document.querySelector('#ensamble').addEventListener('click', (event) => {
-    applyPBRTexture('baseColorTexture', event);
-  });
-  
-})
-
 </script>
